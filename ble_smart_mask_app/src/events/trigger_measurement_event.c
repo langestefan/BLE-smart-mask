@@ -7,7 +7,7 @@
 #include "trigger_measurement_event.h"
 #include <stdio.h>
 
-
+/* logging function for event */
 static int log_trigger_measurement_event(const struct event_header *eh, char *buf,
 			    size_t buf_len)
 {

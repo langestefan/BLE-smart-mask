@@ -12,11 +12,12 @@
 LOG_MODULE_REGISTER(MODULE);
 
 #include "config_event.h"
+#include "trigger_measurement_event.h"
 #include "sensor_packet_event.h"
 
 #define SENSOR_THREAD_STACK_SIZE 800
 #define SENSOR_THREAD_PRIORITY 1
-#define SENSOR_THREAD_SLEEP 500
+#define SENSOR_THREAD_SLEEP 3000
 
 static K_THREAD_STACK_DEFINE(sensor_thread_stack,
 			     SENSOR_THREAD_STACK_SIZE);
@@ -26,13 +27,19 @@ static struct k_thread sensor_thread;
 /* variables */
 static int8_t value1;
 
-
 /* Sensor thread main function, this will loop every 500 miliseconds */
 static void sensor_thread_fn(void)
 {
-	while (true) {
+        int counter = 0;
+
+	while (true) 
+        {
+                LOG_INF("Sleep %i ms", SENSOR_THREAD_SLEEP);
 		k_sleep(K_MSEC(SENSOR_THREAD_SLEEP));
-                LOG_INF("Sleep 500ms");
+                struct trigger_measurement_event *event = new_trigger_measurement_event();
+                event->init_value1 = counter;
+                EVENT_SUBMIT(event);      
+                counter++;
 	}
 }
 
