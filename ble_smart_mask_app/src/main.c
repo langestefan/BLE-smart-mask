@@ -7,9 +7,10 @@
 #include <event_manager.h>
 #include <config_event.h>
 
+#define MODULE main
+#include <caf/events/module_state_event.h>
 
 #include <logging/log.h>
-#define MODULE main
 LOG_MODULE_REGISTER(MODULE);
 
 #define INIT_VALUE1 3
@@ -23,8 +24,10 @@ void main(void)
         else 
         {
 		struct config_event *event = new_config_event();
-
 		event->init_value1 = INIT_VALUE1;
 		EVENT_SUBMIT(event);
+                
+                /* Let CAF know main module is ready */
+ //               module_set_state(MODULE_STATE_READY);
 	}
 }
