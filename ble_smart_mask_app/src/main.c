@@ -28,6 +28,6 @@ void main(void)
 		EVENT_SUBMIT(event);
                 
                 /* Let CAF know main module is ready */
- //               module_set_state(MODULE_STATE_READY);
+                module_set_state(MODULE_STATE_READY);
 	}
 }
