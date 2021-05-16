@@ -37,7 +37,7 @@ static bool event_handler(const struct event_header *eh)
         {
                 /* config event received */
                 LOG_INF("Config event");
-		struct config_event *ce = cast_config_event(eh); // access the event data
+		//struct config_event *ce = cast_config_event(eh); // access the event data
 		init();
 		return false;
 	}

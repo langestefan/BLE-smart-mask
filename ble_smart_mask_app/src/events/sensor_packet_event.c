@@ -8,10 +8,10 @@
 
 #include "sensor_packet_event.h"
 
-static int log_measurement_event(const struct event_header *eh, char *buf,
+static int log_sensor_packet_event(const struct event_header *eh, char *buf,
 				 size_t buf_len)
 {
-	struct measurement_event *event = cast_measurement_event(eh);
+	struct sensor_packet_event *event = cast_sensor_packet_event(eh);
 
 	return snprintf(buf, buf_len, 
                         "val1=%d val2=%d val3=%d", 
@@ -19,13 +19,13 @@ static int log_measurement_event(const struct event_header *eh, char *buf,
 }
 
 /* define info for profiling event */
-EVENT_INFO_DEFINE(measurement_event,
+EVENT_INFO_DEFINE(sensor_packet_event,
 		  NULL,
 		  NULL,
 		  NULL);
 
 /* define event type */  
-EVENT_TYPE_DEFINE(measurement_event,            /* Unique event name. */
+EVENT_TYPE_DEFINE(sensor_packet_event,            /* Unique event name. */
 		  true,                         /* Event logged by default. */
-		  log_measurement_event,        /* Function logging event data. */
-		  &measurement_event_info);     /* Measurement event info */
+		  log_sensor_packet_event,        /* Function logging event data. */
+		  &sensor_packet_event_info);     /* Measurement event info */

@@ -4,11 +4,11 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
  */
 
-#ifndef _MEASUREMENT_EVENT_H_
-#define _MEASUREMENT_EVENT_H_
+#ifndef _SENSOR_PACKET_EVENT_H_
+#define _SENSOR_PACKET_EVENT_H_
 
 /**
- * Measurement Event. Submits sensor data. 
+ * Sensor_packet_event. This event contains aggregated sensor data. 
  *
  */
 
@@ -18,7 +18,7 @@
 extern "C" {
 #endif
 
-struct measurement_event {
+struct sensor_packet_event {
 	struct event_header header;
 
 	int8_t value1;    /* Temperature */
@@ -26,7 +26,7 @@ struct measurement_event {
 	int32_t value3;   /* Humidity */
 };
 
-EVENT_TYPE_DECLARE(measurement_event);
+EVENT_TYPE_DECLARE(sensor_packet_event);
 
 #ifdef __cplusplus
 }
@@ -36,4 +36,4 @@ EVENT_TYPE_DECLARE(measurement_event);
  * @}
  */
 
-#endif /* _MEASUREMENT_EVENT_H_ */
+#endif /* _SENSOR_PACKET_EVENT_H_ */

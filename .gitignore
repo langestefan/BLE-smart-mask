@@ -56,3 +56,6 @@ dkms.conf
 
 # Zephyr build folder
 build_*/
+
+# archived files
+archive/
