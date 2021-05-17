@@ -27,6 +27,6 @@ target_sources(app PRIVATE
 target_sources(app PRIVATE
 		src/modules/bme680.c
 		src/modules/sensor.c
-#		src/modules/ble_bond.c
+		src/modules/ble_bond.c
 )
 # NORDIC SDK APP END

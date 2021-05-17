@@ -17,7 +17,7 @@ static const struct bt_data ad_unbonded[] = {
 static const struct bt_data ad_bonded[] = {
       BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_NO_BREDR),
       BT_DATA_BYTES(BT_DATA_UUID16_ALL,
-                    0x0f, 0x18,   /* Battery Service */
+                    0x18, 0x0f,  /* Battery Service */
       ),
 };
 
