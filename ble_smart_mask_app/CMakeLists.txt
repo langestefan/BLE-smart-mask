@@ -11,6 +11,7 @@ project("BLE smart mask")
 
 # Include application event headers
 zephyr_library_include_directories(src/events)
+zephyr_library_include_directories(src/modules)
 zephyr_library_include_directories(configuration)
 
 # Application sources
@@ -27,6 +28,8 @@ target_sources(app PRIVATE
 target_sources(app PRIVATE
 		src/modules/bme680.c
 		src/modules/sensor.c
-		src/modules/ble_bond.c
+#		src/modules/ble_bond.c # something is broken in ble_bond.c, stops advertising from starting
+#		src/modules/settings_loader.c
 )
 # NORDIC SDK APP END
+zephyr_library_include_directories(.)
