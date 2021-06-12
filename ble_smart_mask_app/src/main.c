@@ -7,6 +7,13 @@
 #include <event_manager.h>
 #include <config_event.h>
 
+#include <bluetooth/bluetooth.h>
+#include <bluetooth/hci.h>
+#include <bluetooth/conn.h>
+#include <bluetooth/uuid.h>
+#include <bluetooth/gatt.h>
+#include <bluetooth/services/bas.h>
+
 #define MODULE main
 #include <caf/events/module_state_event.h>
 
@@ -14,6 +21,19 @@
 LOG_MODULE_REGISTER(MODULE);
 
 #define INIT_VALUE1 3
+
+static void bas_notify(void)
+{
+	uint8_t battery_level = bt_bas_get_battery_level();
+
+	battery_level--;
+
+	if (!battery_level) {
+		battery_level = 100U;
+	}
+
+	bt_bas_set_battery_level(battery_level);
+}
 
 void main(void)
 {
@@ -30,4 +50,12 @@ void main(void)
                 /* Let CAF know main module is ready */
                 module_set_state(MODULE_STATE_READY);
 	}
+
+        while(1)
+        {
+          	k_sleep(K_SECONDS(1));
+
+		/* Battery level simulation */
+		bas_notify();
+        }
 }
